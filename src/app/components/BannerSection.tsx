@@ -13,7 +13,7 @@ export default function BannerSection() {
           <div className="relative w-[200px] sm:w-[250px] md:w-[300px] -mt-16">
             <Image
               src="/Labz/Whey.jpg"
-              alt="Protein Box"
+              alt="Protein"
               width={300}
               height={300}
               className="object-contain"
