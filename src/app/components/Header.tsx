@@ -95,6 +95,11 @@ export default function Header() {
               </button>
             </div>
             <nav className="flex flex-col space-y-4">
+                     {/* Logo */}
+          <div className="flex items-center space-x-2">
+            <Image src="/Labz/logo.jpg" alt="Logo" width={70} height={40} />
+            <span className="font-bold text-lg"></span>
+          </div>
               {navLinks.map(({ label, href }) => (
                 <Link
                   key={href}
