@@ -83,8 +83,10 @@ export default function ProductGallery() {
     <section className="py-26 px-4 sm:px-8 lg:px-16 max-w-7xl mx-auto ">
       {/* Header */}
       <div className="text-center mb-12">
+        <p className="text-lg italic text-primary mb-2 ">Our best</p>
+
         <h2 className="text-3xl sm:text-4xl font-bold mb-2">Product Gallery</h2>
-        <div className="w-16 h-1 mx-auto bg-green-600 rounded"></div>
+        <div className="w-16 h-1 mx-auto bg-primary rounded"></div>
       </div>
 
       {/* Category Filters */}
@@ -96,8 +98,8 @@ export default function ProductGallery() {
               onClick={() => setActiveCategory(cat)}
               className={`whitespace-nowrap pb-2 transition-colors text-sm sm:text-base ${
                 activeCategory === cat
-                  ? "text-green-600 border-b-2 border-green-600 font-semibold"
-                  : "text-gray-500 hover:text-green-600"
+                  ? "text-green-600 border-b-2 border-primary font-semibold"
+                  : "text-gray-500 hover:text-hover"
               }`}
             >
               {cat}
