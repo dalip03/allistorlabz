@@ -4,19 +4,50 @@ import { useState } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 
-const categories = ["All", "Protein", "Diet & Life Style", "Nutrition", "Vitamins"];
+const categories = [
+  "All",
+  "Protein",
+  "Diet & Life Style",
+  "Nutrition",
+  "Vitamins",
+];
 
 const products = [
   { id: 1, name: "ISO Force", category: "Protein", image: "/Labz/ISO.jpg" },
-  { id: 2, name: "caratine Max", category: "Diet & Life Style", image: "/Labz/caratine.jpg" },
-  { id: 3, name: "massGainer", category: "Nutrition", image: "/Labz/massGainer.jpg" },
-  { id: 4, name: "LabzPenta Alpha", category: "Vitamins", image: "/Labz/Penta.jpg" },
+  {
+    id: 2,
+    name: "caratine Max",
+    category: "Diet & Life Style",
+    image: "/Labz/caratine.jpg",
+  },
+  {
+    id: 3,
+    name: "massGainer",
+    category: "Nutrition",
+    image: "/Labz/massGainer.jpg",
+  },
+  {
+    id: 4,
+    name: "LabzPenta Alpha",
+    category: "Vitamins",
+    image: "/Labz/Penta.jpg",
+  },
   { id: 5, name: "Whey", category: "Protein", image: "/Labz/Whey.jpg" },
-  { id: 6, name: "wheyJacked", category: "Diet & Life Style", image: "/Labz/wheyJacked.jpg" },
+  {
+    id: 6,
+    name: "wheyJacked",
+    category: "Diet & Life Style",
+    image: "/Labz/wheyJacked.jpg",
+  },
   { id: 7, name: "ISOPRO", category: "Protein", image: "/Labz/ISOPRO.jpg" },
   { id: 8, name: "Ritual", category: "Protein", image: "/Labz/Ritual.jpg" },
   { id: 9, name: "Amino", category: "Protein", image: "/Labz/Amino.jpg" },
-  { id: 10, name: "creaator", category: "Protein", image: "/Labz/creaator.jpg" },
+  {
+    id: 10,
+    name: "creaator",
+    category: "Protein",
+    image: "/Labz/creaator.jpg",
+  },
   { id: 11, name: "Dungeon", category: "Protein", image: "/Labz/Dungeon.jpg" },
 ];
 
@@ -44,7 +75,9 @@ export default function ProductGallery() {
   const filteredProducts =
     activeCategory === "All"
       ? products
-      : products.filter((p) => p.category.toLowerCase() === activeCategory.toLowerCase());
+      : products.filter(
+          (p) => p.category.toLowerCase() === activeCategory.toLowerCase()
+        );
 
   return (
     <section className="py-26 px-4 sm:px-8 lg:px-16 max-w-7xl mx-auto ">
@@ -55,20 +88,22 @@ export default function ProductGallery() {
       </div>
 
       {/* Category Filters */}
-      <div className="flex justify-center mb-12 space-x-8 bg-white shadow rounded-md px-6 py-2 text-sm sm:text-base select-none">
-        {categories.map((cat) => (
-          <button
-            key={cat}
-            onClick={() => setActiveCategory(cat)}
-            className={`${
-              activeCategory === cat
-                ? "text-green-600 border-b-2 border-green-600 font-semibold"
-                : "text-gray-500 hover:text-green-600"
-            } pb-2 transition-colors`}
-          >
-            {cat}
-          </button>
-        ))}
+      <div className="overflow-x-auto scrollbar-thin scrollbar-thumb-green-600 scrollbar-track-gray-100 mb-12 bg-white shadow rounded-md px-4 py-2 select-none">
+        <div className="inline-flex space-x-6 min-w-max">
+          {categories.map((cat) => (
+            <button
+              key={cat}
+              onClick={() => setActiveCategory(cat)}
+              className={`whitespace-nowrap pb-2 transition-colors text-sm sm:text-base ${
+                activeCategory === cat
+                  ? "text-green-600 border-b-2 border-green-600 font-semibold"
+                  : "text-gray-500 hover:text-green-600"
+              }`}
+            >
+              {cat}
+            </button>
+          ))}
+        </div>
       </div>
 
       {/* Animated Product Grid */}
