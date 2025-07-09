@@ -68,15 +68,15 @@ export default function SupplementSection() {
           animate={rightControls}
           className="flex-1"
         >
-          <p className="text-green-600 italic font-semibold text-lg mb-2">Our Best</p>
+          <p className="text-primary italic font-semibold text-lg mb-2">Our Best</p>
           <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-6">Supplement</h2>
-          <p className="text-green-600 italic font-semibold text-lg mb-1">You &apos;re Dream</p>
+          <p className="text-primary italic font-semibold text-lg mb-1">You &apos;re Dream</p>
           <h3 className="text-xl md:text-2xl font-semibold mb-6">Body Is just Click away</h3>
 
           {/* Features Grid */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-8">
             {features.map((feature, index) => (
-              <div key={index} className="pl-4 border-l-4 border-green-500">
+              <div key={index} className="pl-4 border-l-4 border-primary">
                 <h4 className="font-bold text-lg mb-1 text-gray-800">{feature.title}</h4>
                 <p className="text-sm text-gray-600">{feature.desc}</p>
               </div>
@@ -87,8 +87,8 @@ export default function SupplementSection() {
           <div className="border-t pt-6 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-4">
             <p className="text-lg font-medium text-gray-800">
               <span className="font-bold">*** Black Friday Offer on This Month </span>
-              <span className="text-green-600 font-bold">10% Off</span> on this{" "}
-              <span className="text-green-600 font-semibold">Whey Protein</span>
+              <span className="text-primary font-bold">10% Off</span> on this{" "}
+              <span className="text-primary font-semibold">Whey Protein</span>
             </p>
           </div>
         </motion.div>

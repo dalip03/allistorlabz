@@ -28,7 +28,7 @@ export default function WhySupplements() {
     <section className="py-20 px-4 bg-white text-gray-800">
       <div className="max-w-7xl mx-auto text-center">
         {/* Subheading */}
-        <p className="text-lg italic text-green-600 mb-2 ">Four Amazing</p>
+        <p className="text-lg italic text-primary mb-2 ">Four Amazing</p>
 
         {/* Main Heading */}
         <h2 className="text-3xl sm:text-4xl font-bold mb-10">Supplement In One</h2>

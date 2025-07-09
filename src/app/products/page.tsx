@@ -72,7 +72,7 @@ export default function ProductGallery() {
               onClick={() => setActiveCategory(cat)}
               className={`whitespace-nowrap pb-2 transition-colors text-sm sm:text-base ${
                 activeCategory === cat
-                  ? "text-green-600 border-b-2 border-primary font-semibold"
+                  ? "text-primary border-b-2 border-primary font-semibold"
                   : "text-gray-500 hover:text-hover"
               }`}
             >
