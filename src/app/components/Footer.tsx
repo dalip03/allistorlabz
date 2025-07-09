@@ -22,7 +22,7 @@ export default function Footer() {
   };
 
   return (
-    <footer id="footer" className="bg-gray-80000 border-t border-gray-300 text-white">
+    <footer id="footer" className="bg-gray-900 border-t border-gray-300 text-white">
       <div className="max-w-7xl mx-auto px-6 py-12 grid grid-cols-1 md:grid-cols-3 gap-10">
         {/* About Us */}
         <div className="md:border-r md:pr-6">

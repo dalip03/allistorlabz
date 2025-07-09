@@ -44,7 +44,7 @@ export default function Header() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
           {/* Logo */}
           <div className="flex items-center space-x-2">
-            <Image src="/Labz/logo.jpg" alt="Logo" width={40} height={40} />
+            <Image src="/Labz/logo.jpg" alt="Logo" width={70} height={40} />
             <span className="font-bold text-lg"></span>
           </div>
 
