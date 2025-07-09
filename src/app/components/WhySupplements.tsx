@@ -1,6 +1,8 @@
 "use client";
 
 import Image from "next/image";
+import { motion, useAnimation, useInView } from "framer-motion";
+import { useEffect, useRef } from "react";
 
 const features = [
   {
@@ -34,25 +36,49 @@ export default function WhySupplements() {
         {/* Cards */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
           {features.map((item, index) => (
-            <div key={index} className="flex flex-col items-center text-center space-y-4 px-4">
-              <div className="w-20 h-20 rounded-full flex items-center justify-center">
-                <Image
-                  src={item.icon}
-                  alt={item.title}
-                  width={70}
-                  height={70}
-                  className="object-contain"
-                />
-              </div>
-              <h3 className="text-lg font-semibold">{item.title}</h3>
-              <p className="text-sm text-gray-600">
-                There are many variations of passages of Lorem Ipsum available,
-                but the majority have suffered alteration in some form.
-              </p>
-            </div>
+            <FeatureCard key={index} item={item} index={index} />
           ))}
         </div>
       </div>
     </section>
+  );
+}
+
+function FeatureCard({ item, index }: { item: typeof features[0]; index: number }) {
+  const ref = useRef(null);
+  const controls = useAnimation();
+  const inView = useInView(ref, { once: true, margin: "-100px" });
+
+  useEffect(() => {
+    if (inView) {
+      controls.start({
+        opacity: 1,
+        y: 0,
+        transition: { duration: 0.5, delay: index * 0.15, ease: "easeOut" },
+      });
+    }
+  }, [inView, controls, index]);
+
+  return (
+    <motion.div
+      ref={ref}
+      initial={{ opacity: 0, y: 30 }}
+      animate={controls}
+      className="flex flex-col items-center text-center space-y-4 px-4"
+    >
+      <div className="w-20 h-20 rounded-full flex items-center justify-center">
+        <Image
+          src={item.icon}
+          alt={item.title}
+          width={70}
+          height={70}
+          className="object-contain"
+        />
+      </div>
+      <h3 className="text-lg font-semibold">{item.title}</h3>
+      <p className="text-sm text-gray-600">
+        There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form.
+      </p>
+    </motion.div>
   );
 }

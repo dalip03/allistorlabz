@@ -1,15 +1,48 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { useEffect, useRef } from "react";
+import { motion, useAnimation, useInView } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 
 export default function BannerSection() {
+  const leftRef = useRef(null);
+  const rightRef = useRef(null);
+
+  const leftControls = useAnimation();
+  const rightControls = useAnimation();
+
+  // Check if each element is in view
+  const leftInView = useInView(leftRef, { once: true, margin: "-100px" });
+  const rightInView = useInView(rightRef, { once: true, margin: "-100px" });
+
+  useEffect(() => {
+    if (leftInView) {
+      leftControls.start({
+        opacity: 1,
+        y: 0,
+        transition: { duration: 0.6, ease: "easeOut" },
+      });
+    }
+    if (rightInView) {
+      rightControls.start({
+        opacity: 1,
+        y: 0,
+        transition: { duration: 0.6, ease: "easeOut", delay: 0.2 },
+      });
+    }
+  }, [leftInView, rightInView, leftControls, rightControls]);
+
   return (
     <section className="w-screen bg-primary text-white overflow-hidden relative py-12 sm:py-20 px-4 sm:px-8">
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-10">
         {/* Left Image */}
-        <div className="relative w-full md:w-1/2 flex justify-center">
+        <motion.div
+          ref={leftRef}
+          initial={{ opacity: 0, y: 50 }}
+          animate={leftControls}
+          className="relative w-full md:w-1/2 flex justify-center"
+        >
           <div className="relative w-[200px] sm:w-[250px] md:w-[300px] -mt-16">
             <Image
               src="/Labz/Whey.jpg"
@@ -19,10 +52,15 @@ export default function BannerSection() {
               className="object-contain"
             />
           </div>
-        </div>
+        </motion.div>
 
         {/* Right Content */}
-        <div className="w-full md:w-1/2 text-center md:text-left">
+        <motion.div
+          ref={rightRef}
+          initial={{ opacity: 0, y: 50 }}
+          animate={rightControls}
+          className="w-full md:w-1/2 text-center md:text-left"
+        >
           <p className="text-lg italic font-semibold text-white mb-2">
             Get Your Natural
           </p>
@@ -43,7 +81,7 @@ export default function BannerSection() {
               </button>
             </Link>
           </motion.div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

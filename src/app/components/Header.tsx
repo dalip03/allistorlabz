@@ -21,10 +21,18 @@ export default function Header() {
   const navLinks = [
     { label: "Home", href: "/" },
     { label: "Products", href: "/products" },
-    { label: "Contact Us", href: "/contact" },
   ];
 
   const isActive = (href: string) => pathname === href;
+
+  // Scroll to footer function
+  const scrollToFooter = () => {
+    const footer = document.getElementById("footer");
+    if (footer) {
+      footer.scrollIntoView({ behavior: "smooth" });
+    }
+    setIsOpen(false); // close mobile menu if open
+  };
 
   return (
     <>
@@ -53,12 +61,12 @@ export default function Header() {
                 {label}
               </Link>
             ))}
-            <Link
-              href="/contact"
+            <button
+              onClick={scrollToFooter}
               className="bg-primary text-white px-6 py-2 rounded-md font-medium hover:bg-hover transition"
             >
               Contact Us
-            </Link>
+            </button>
           </nav>
 
           {/* Mobile Menu Button */}
@@ -99,6 +107,12 @@ export default function Header() {
                   {label}
                 </Link>
               ))}
+              <button
+                onClick={scrollToFooter}
+                className="bg-primary text-white px-6 py-2 rounded-md cursor-pointer font-medium hover:bg-hover transition mt-4"
+              >
+                Contact Us
+              </button>
             </nav>
           </motion.div>
         )}

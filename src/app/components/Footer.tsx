@@ -22,12 +22,12 @@ export default function Footer() {
   };
 
   return (
-    <footer className="bg-gray-100 border-t border-gray-300 text-primary">
+    <footer id="footer" className="bg-gray-80000 border-t border-gray-300 text-white">
       <div className="max-w-7xl mx-auto px-6 py-12 grid grid-cols-1 md:grid-cols-3 gap-10">
         {/* About Us */}
         <div className="md:border-r md:pr-6">
           <h3 className="text-xl font-semibold mb-4">About Us</h3>
-          <p className="text-sm leading-relaxed text-gray-600">
+          <p className="text-sm leading-relaxed text-gray-200">
             We are a passionate team dedicated to delivering quality and innovation.
             Our mission is to create meaningful digital experiences that connect
             people and solve real-world problems through technology.
@@ -37,7 +37,7 @@ export default function Footer() {
         {/* Send Your Message */}
         <div className="md:border-r md:px-6">
           <h3 className="text-xl font-semibold mb-4">Send Your Message</h3>
-          <form onSubmit={handleSubmit} className="flex flex-col space-y-4">
+          <form onSubmit={handleSubmit} className="flex flex-col space-y-4 text-gray-200">
             <input
               type="text"
               name="name"
@@ -45,7 +45,7 @@ export default function Footer() {
               value={form.name}
               onChange={handleChange}
               required
-              className="px-4 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="px-4 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-primary"
             />
             <input
               type="email"
@@ -54,7 +54,7 @@ export default function Footer() {
               value={form.email}
               onChange={handleChange}
               required
-              className="px-4 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="px-4 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-primary"
             />
             <textarea
               name="message"
@@ -63,7 +63,7 @@ export default function Footer() {
               value={form.message}
               onChange={handleChange}
               required
-              className="px-4 py-2 border rounded resize-none focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="px-4 py-2 border rounded resize-none focus:outline-none focus:ring-2 focus:ring-primary"
             />
             <button
               type="submit"
@@ -77,7 +77,7 @@ export default function Footer() {
         {/* Contact Us */}
         <div className="md:pl-6">
           <h3 className="text-xl font-semibold mb-4">Contact Us</h3>
-          <ul className="text-sm space-y-3 text-gray-700">
+          <ul className="text-sm space-y-3 text-gray-200">
             <li>
               <span className="font-medium">Name:</span> AlliStorLabz
             </li>
@@ -94,7 +94,7 @@ export default function Footer() {
         </div>
       </div>
 
-      <div className="text-center text-sm text-gray-500 py-6 border-t border-gray-200">
+      <div className="text-center text-sm text-gray-200 py-6 border-t border-gray-400">
         © {new Date().getFullYear()} <span className="font-semibold">AllistorLabz</span>. All rights reserved.
       </div>
     </footer>
