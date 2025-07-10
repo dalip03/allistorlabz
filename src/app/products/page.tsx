@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
+import ProductModal from "../components/ProductModal";
 
 const categories = [
   "All",
@@ -13,17 +14,105 @@ const categories = [
 ];
 
 const products = [
-  { id: 1, name: "ISO Force", category: "Protein", image: "/Labz/ISO.jpg" },
-  { id: 2, name: "caratine Max", category: "Diet & Life Style", image: "/Labz/caratine.jpg" },
-  { id: 3, name: "massGainer", category: "Nutrition", image: "/Labz/massGainer.jpg" },
-  { id: 4, name: "LabzPenta Alpha", category: "Vitamins", image: "/Labz/Penta.jpg" },
-  { id: 5, name: "Whey", category: "Protein", image: "/Labz/Whey.jpg" },
-  { id: 6, name: "wheyJacked", category: "Diet & Life Style", image: "/Labz/wheyJacked.jpg" },
-  { id: 7, name: "ISOPRO", category: "Protein", image: "/Labz/ISOPRO.jpg" },
-  { id: 8, name: "Ritual", category: "Protein", image: "/Labz/Ritual.jpg" },
-  { id: 9, name: "Amino", category: "Protein", image: "/Labz/Amino.jpg" },
-  { id: 10, name: "creaator", category: "Protein", image: "/Labz/creaator.jpg" },
-  { id: 11, name: "Dungeon", category: "Protein", image: "/Labz/Dungeon.jpg" },
+  {
+    id: 1,
+    name: "ISO Force",
+    category: "Protein",
+    description:
+      "Caratine Max helps with fat metabolism and boosts energy levels during workouts.",
+    image: "/Labz/ISO.jpg",
+    images: ["/Labz/ISO.jpg", "/Labz/ISO.jpg", "/Labz/ISO.jpg"],
+  },
+  {
+    id: 2,
+    name: "caratine Max",
+    category: "Diet & Life Style",
+    description:
+      "Caratine Max helps with fat metabolism and boosts energy levels during workouts.",
+    image: "/Labz/caratine.jpg",
+    images: ["/Labz/ISO.jpg", "/Labz/ISO.jpg", "/Labz/ISO.jpg"],
+  },
+  {
+    id: 3,
+    name: "massGainer",
+    category: "Nutrition",
+    description:
+      "Caratine Max helps with fat metabolism and boosts energy levels during workouts.",
+    image: "/Labz/massGainer.jpg",
+    images: ["/Labz/ISO.jpg", "/Labz/ISO.jpg", "/Labz/ISO.jpg"],
+  },
+  {
+    id: 4,
+    name: "LabzPenta Alpha",
+    category: "Vitamins",
+    description:
+      "Caratine Max helps with fat metabolism and boosts energy levels during workouts.",
+    image: "/Labz/Penta.jpg",
+    images: ["/Labz/ISO.jpg", "/Labz/ISO.jpg", "/Labz/ISO.jpg"],
+  },
+  {
+    id: 5,
+    name: "Whey",
+    category: "Protein",
+    description:
+      "Caratine Max helps with fat metabolism and boosts energy levels during workouts.",
+    image: "/Labz/Whey.jpg",
+    images: ["/Labz/ISO.jpg", "/Labz/ISO2jpg", "/Labz/ISO.jpg"],
+  },
+  {
+    id: 6,
+    name: "wheyJacked",
+    category: "Diet & Life Style",
+    description:
+      "Caratine Max helps with fat metabolism and boosts energy levels during workouts.",
+    image: "/Labz/wheyJacked.jpg",
+    images: ["/Labz/ISO.jpg", "/Labz/ISO.jpg", "/Labz/ISO.jpg"],
+  },
+  {
+    id: 7,
+    name: "ISOPRO",
+    category: "Protein",
+    description:
+      "Caratine Max helps with fat metabolism and boosts energy levels during workouts.",
+    image: "/Labz/ISOPRO.jpg",
+    images: ["/Labz/ISO.jpg", "/Labz/ISO.jpg", "/Labz/ISO.jpg"],
+  },
+  {
+    id: 8,
+    name: "Ritual",
+    category: "Protein",
+    description:
+      "Caratine Max helps with fat metabolism and boosts energy levels during workouts.",
+    image: "/Labz/Ritual.jpg",
+    images: ["/Labz/ISO.jpg", "/Labz/ISO.jpg", "/Labz/ISO.jpg"],
+  },
+  {
+    id: 9,
+    name: "Amino",
+    category: "Protein",
+    description:
+      "Caratine Max helps with fat metabolism and boosts energy levels during workouts.",
+    image: "/Labz/Amino.jpg",
+    images: ["/Labz/ISO.jpg", "/Labz/ISO.jpg", "/Labz/ISO.jpg"],
+  },
+  {
+    id: 10,
+    name: "creaator",
+    category: "Protein",
+    description:
+      "Caratine Max helps with fat metabolism and boosts energy levels during workouts.",
+    image: "/Labz/creaator.jpg",
+    images: ["/Labz/ISO.jpg", "/Labz/ISO.jpg", "/Labz/ISO.jpg"],
+  },
+  {
+    id: 11,
+    name: "Dungeon",
+    category: "Protein",
+    description:
+      "Caratine Max helps with fat metabolism and boosts energy levels during workouts.",
+    image: "/Labz/Dungeon.jpg",
+    images: ["/Labz/ISO.jpg", "/Labz/ISO.jpg", "/Labz/ISO.jpg"],
+  },
 ];
 
 const containerVariants = {
@@ -46,6 +135,11 @@ const itemVariants = {
 
 export default function ProductGallery() {
   const [activeCategory, setActiveCategory] = useState("All");
+  const [selectedProduct, setSelectedProduct] = useState<{
+    name: string;
+    description: string;
+    images: string[];
+  } | null>(null);
 
   const filteredProducts =
     activeCategory === "All"
@@ -92,36 +186,50 @@ export default function ProductGallery() {
           exit="exit"
           className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8"
         >
-          {filteredProducts.map(({ id, name, category, image }) => (
-            <motion.div
-              key={id}
-              variants={itemVariants}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, amount: 0.3 }}
-              className="bg-white rounded-md shadow-md hover:shadow-lg transition-shadow cursor-pointer flex flex-col"
-              layout
-            >
-              <div className="relative w-full aspect-[4/3] rounded-t-md overflow-hidden border border-gray-200">
-                <Image
-                  src={image}
-                  alt={name}
-                  fill
-                  style={{ objectFit: "contain" }}
-                  sizes="(max-width: 640px) 100vw,
+          {filteredProducts.map(
+            ({ id, name, category, image, images, description }) => (
+              <motion.div
+                key={id}
+                variants={itemVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.3 }}
+                className="bg-white rounded-md shadow-md hover:shadow-lg transition-shadow cursor-pointer flex flex-col"
+                onClick={() =>
+                  setSelectedProduct({
+                    name,
+                    description,
+                    images,
+                  })
+                }
+              >
+                <div className="relative w-full aspect-[4/3] rounded-t-md overflow-hidden border border-gray-200">
+                  <Image
+                    src={image}
+                    alt={name}
+                    fill
+                    style={{ objectFit: "contain" }}
+                    sizes="(max-width: 640px) 100vw,
                          (max-width: 1024px) 50vw,
                          33vw"
-                />
-              </div>
+                  />
+                </div>
 
-              <div className="p-4 text-center flex-grow flex flex-col justify-center">
-                <h3 className="font-semibold text-gray-800 mb-1">{name}</h3>
-                <p className="text-sm text-gray-500">{category}</p>
-              </div>
-            </motion.div>
-          ))}
+                <div className="p-4 text-center flex-grow flex flex-col justify-center">
+                  <h3 className="font-semibold text-gray-800 mb-1">{name}</h3>
+                  <p className="text-sm text-gray-500">{category}</p>
+                </div>
+              </motion.div>
+            )
+          )}
         </motion.div>
       </AnimatePresence>
+
+      <ProductModal
+        isOpen={!!selectedProduct}
+        onClose={() => setSelectedProduct(null)}
+        product={selectedProduct}
+      />
     </section>
   );
 }
