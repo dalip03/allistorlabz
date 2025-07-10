@@ -1,0 +1,9 @@
+{
+  "redirects": [
+    {
+      "source": "/product-intensemass.php",
+      "destination": "/",
+      "permanent": true
+    }
+  ]
+}
