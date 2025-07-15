@@ -4,6 +4,11 @@
       "source": "/product-intensemass.php",
       "destination": "/",
       "permanent": true
+    },
+     {
+      "source": "/product-creatine.php",
+      "destination": "/",
+      "permanent": true
     }
   ]
 }
