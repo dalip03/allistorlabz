@@ -1,12 +1,7 @@
 {
   "redirects": [
     {
-      "source": "/product-intensemass.php",
-      "destination": "/",
-      "permanent": true
-    },
-     {
-      "source": "/product-creatine.php",
+      "source": "/product-:slug.php",
       "destination": "/",
       "permanent": true
     }
